@@ -10,8 +10,8 @@ spring:
   mail:
     host: smtp.qq.com
     port: 465
-    username: 461420681@qq.com
-    password: fxzcsizxryosbjef
+    username: okDo_timer@qq.com
+    password: ljakpuxdekflccec
     protocol: smtps
     properties:
       mail:
@@ -19,4 +19,10 @@ spring:
           auth: true
           ssl:
             enable: true
+  redis:
+    host: localhost
+    database: 0
+    port: 6379
+
+
 

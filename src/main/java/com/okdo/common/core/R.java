@@ -21,11 +21,15 @@ public class R<T> implements Serializable {
         return r;
     }
 
-    public static <T> R<T> ok(T data) {
+    public static <T> R<T> success(T data) {
         return restResult(data, Status.OK, null);
     }
 
-    public static <T> R<T> ok(T data, String msg) {
+    public static <T> R<T> success() {
+        return restResult(null, Status.OK, null);
+    }
+
+    public static <T> R<T> success(T data, String msg) {
         return restResult(data, Status.OK, msg);
     }
 }

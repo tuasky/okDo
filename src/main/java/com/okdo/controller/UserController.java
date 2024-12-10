@@ -1,5 +1,4 @@
 package com.okdo.controller;
-
 import com.okdo.common.core.R;
 import com.okdo.common.core.model.LoginBody;
 import com.okdo.service.UserService;
@@ -19,10 +18,10 @@ public class UserController {
         return null;
     }
 
-    @PostMapping("/sendCode")
-    public R<String> sendCode(@RequestParam("type") String type,
-                              @RequestParam("informSource") String informSource) throws Exception{
-        return userService.sendCode(type, informSource);
+    @GetMapping("/sendCode")
+    public R<String> sendCode(String type, String receiver) throws Exception{
+        userService.sendCode(type, receiver);
+        return R.success();
     }
 
 }

@@ -32,10 +32,9 @@ public class EmailInform implements Inform {
             log.info("send to: {}, email: {}", informContext.getReceiver(),
                     String.format("[title: %s, content: \n%s]",
                             informContext.getTitle(), informContext.getContent()));
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             log.error("send email to {} fail, the reason is {}",
                     informContext.getReceiver(), e.getMessage());
-            throw e;
         }
     }
 
@@ -72,7 +71,7 @@ public class EmailInform implements Inform {
                 content = informContext.getContent();
                 break;
             default:
-                throw new Exception(String.format("unSupport content type.", contentType));
+                throw new Exception(String.format("unSupport content type: %s.", contentType));
         }
     }
 

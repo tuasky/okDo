@@ -9,35 +9,57 @@
     font-style: normal;
     font-display: block;
 }
+
 * {
     margin: 0;
     padding: 0;
     border: 0;
 }
-body {
 
+html, body, #app {
+    width: 100%;
+    height: 100%;
 }
-.mainWindow {
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+i {
+    font-style: normal;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    background: none;
+}
+
+#mainWindow {
     display: flex;
     width: 100%;
     height: 100%;
-    background: linear-gradient(#9175f5, #578af8);
+    background: linear-gradient(#0b3a6f, #7db4f2);
 }
-.nav {
-    width: 5%;
-    height: 100%;
-    background: linear-gradient(#9175f5, #857ef4, #578af8);
-}
-.nav {
 
+.nav {
+    position: relative;
+    width: 70px;
+    height: 100%;
+    background: linear-gradient(#0b3a6f, #539bee, #7db4f2);
 }
+
 .showContent {
     flex: 1;
-    margin: 8px 7px 8px 0;
-    background-color: #f6f7fb;
-    border-radius: 15px;
     overflow: auto;
+    margin: 8px 7px 8px 0;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, .9);
 }
+
 /* 滚动条整体宽度 */
 .showContent::-webkit-scrollbar {
     width: 8px; /* 可以调整滚动条的宽度 */
@@ -58,3 +80,199 @@ body {
 .showContent::-webkit-scrollbar-thumb:hover {
     background: #7483f6; /* 悬停时滑块的颜色 */
 }
+
+.logo img{
+    width: 100%;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.nav .sub-nav {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+}
+
+.nav .sub-nav li {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 35px;
+    text-align: center;
+    color: #77b0f2;
+    font-size: 12px;
+}
+
+.font-icon {
+    font-family: 'icomoon';
+}
+
+.nav-icon{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.nav ul .active-nav {
+    color: white;
+}
+
+.nav ul li:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.blur {
+    filter: blur(10px);
+}
+
+.user {
+    position: absolute;
+    bottom: 3%;
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    width: 100%;
+    text-align: center;
+    color: #77b0f2;
+    cursor: pointer;
+}
+
+.user:hover {
+    color: white;
+}
+
+.user li {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.user li i {
+    width: 40px;
+    height: 40px;
+    font-size: 13px;
+    border-radius: 20px;
+    background-color: #265f9f;
+    line-height: 40px;
+}
+
+.login {
+    position: fixed;
+    width: 420px;
+    height: 560px;
+    left: 50%;
+    margin-left: -210px;
+    top: 50%;
+    margin-top: -280px;
+    border-radius: 20px;
+    /*background: linear-gradient(to right bottom, rgba(62, 127, 201, .2), rgba(117, 175, 241, .2));*/
+    background: linear-gradient(to right bottom, #62a4f0, #d0e0f2);
+}
+
+.login .main {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    margin: 10px;
+    background-color: white;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+.login .main img {
+    margin-top: 60px;
+    width: 100px;
+}
+
+.login form ul li {
+    display: flex;
+    justify-content: space-between;
+    width: 340px;
+    height: 45px;
+    margin-top: 40px;
+    border-radius: 10px;
+    color: #828282;
+    background-color: white;
+    border: 1px solid #828282;
+}
+
+.login input[type='email']{
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+.login input[type='text'] {
+    width: calc(100% - 120px);
+    height: 100%;
+    padding-left: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+.login .codeBtn {
+    padding: 3px 10px;
+    margin: auto 0;
+    font-size: 14px;
+    color: #828282;
+    border-left: 1px solid #828282;
+    cursor: pointer;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.login .success-remain {
+    position: absolute;
+    left: 35px;
+    top: 345px;
+    font-size: 12px;
+}
+
+.login .success-remain .font-icon {
+    color: green;
+}
+
+.login .error-remain {
+    position: absolute;
+    left: 35px;
+    top: 345px;
+    color: rgb(225, 0, 0);
+    font-size: 12px;
+}
+
+.login .agree {
+    display: block;
+    width: 255px;
+    margin: 80px auto 0;
+    font-size: 14px;
+}
+
+.login .agree a {
+    font-size: 14px;
+    color: #62a4f0;
+}
+
+.login .submit {
+    width: 340px;
+    height: 45px;
+    margin-top: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    background: linear-gradient(to right bottom, #62a4f0, #d0e0f2);
+}
+
+.login .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #73adf0;
+    font-size: 20px;
+    cursor: pointer;
+}
+

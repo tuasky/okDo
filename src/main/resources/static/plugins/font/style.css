@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?uvx8pz');
-  src:  url('fonts/icomoon.eot?uvx8pz#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?uvx8pz') format('truetype'),
-    url('fonts/icomoon.woff?uvx8pz') format('woff'),
-    url('fonts/icomoon.svg?uvx8pz#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?ibdq6f');
+  src:  url('fonts/icomoon.eot?ibdq6f#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?ibdq6f') format('truetype'),
+    url('fonts/icomoon.woff?ibdq6f') format('woff'),
+    url('fonts/icomoon.svg?ibdq6f#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -31,14 +31,29 @@
 .icon-add_circle_outline:before {
   content: "\e901";
 }
+.icon-clear:before {
+  content: "\e91a";
+}
+.icon-content_copy:before {
+  content: "\e91b";
+}
 .icon-remove_circle_outline:before {
   content: "\e902";
 }
 .icon-add_alarm:before {
   content: "\e903";
 }
+.icon-arrow_back:before {
+  content: "\e91c";
+}
+.icon-arrow_forward:before {
+  content: "\e91d";
+}
 .icon-cancel:before {
   content: "\e904";
+}
+.icon-check:before {
+  content: "\e91e";
 }
 .icon-do_not_disturb_alt:before {
   content: "\e905";
@@ -51,6 +66,9 @@
 }
 .icon-favorite:before {
   content: "\e908";
+}
+.icon-highlight_remove:before {
+  content: "\e91f";
 }
 .icon-settings_power:before {
   content: "\e909";
@@ -76,6 +94,9 @@
 .icon-thumb_up_off_alt:before {
   content: "\e910";
 }
+.icon-people_alt:before {
+  content: "\e920";
+}
 .icon-fireplace:before {
   content: "\e911";
 }
@@ -93,6 +114,9 @@
 }
 .icon-person_add_alt_1:before {
   content: "\e916";
+}
+.icon-person_remove:before {
+  content: "\e921";
 }
 .icon-star_outline:before {
   content: "\e917";

@@ -28,4 +28,5 @@ public class OkDoApplicationTests {
                 "/mail/verifyCode.html",
                 "email", email, "verifyCode", "123456");
     }
+
 }

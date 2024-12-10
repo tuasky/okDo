@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface UserService extends IService<User> {
     public R<String> login(LoginBody loginBody);
 
-    public R<String> sendCode(String type, String informSource);
+    public R<String> sendCode(String type, String receiver) throws Exception;
 
     public void insertUser(User user);
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class LoginBody {
-    private String email;
-    private String phone;
+    private String type;
+    private String receiver;
     private String verifyCode;
 }
