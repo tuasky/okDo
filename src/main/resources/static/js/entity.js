@@ -1,4 +1,5 @@
 class LoginContext {
+    isLogin = false
     isShowLoginWindow= false
     isSentCode= false
     isAccept= false
@@ -12,4 +13,8 @@ class LoginForm {
     type = 'email'
     receiver
     verifyCode
+}
+
+class LoginUser {
+
 }

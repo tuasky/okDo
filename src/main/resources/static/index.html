@@ -42,8 +42,11 @@
                     </li>
                 </ul>
                 <ul class="user">
-                    <li>
-                        <i @click="popLoginWindow" class="user-login-btn"><img src="#" alt="">登录</i>
+                    <li class="login-btn">
+                        <button v-show="userInfo == null" @click="popLoginWindow">登录</button>
+                    </li>
+                    <li >
+                        <img v-show="userInfo != null" src="{{userInfo.headerUrl}}" alt="">
                     </li>
                 </ul>
             </div>
@@ -54,7 +57,7 @@
         <div v-show="loginContext.isShowLoginWindow" class="login">
             <div class="main">
                 <div class="logo"><img src="img/logo.png" alt=""></div>
-                <form action="#" method="post">
+                <form @submit.prevent="handleLogin">
                     <ul>
                         <li>
                             <input type="email"
@@ -168,10 +171,13 @@
                 return {
                     loginContext: new LoginContext(),
                     loginForm: new LoginForm(),
+                    userInfo: null,
                 }
             },
             methods: {
                 popLoginWindow() {
+                    if (this.loginContext.isLogin)
+                        return;
                     this.loginContext = new LoginContext();
                     this.loginContext.isShowLoginWindow = true;
                     this.loginForm = new LoginForm();
@@ -192,12 +198,23 @@
                     this.startCountdown().then(r => null)
                     sendCodeApi(this.loginForm)
                 },
+                async handleLogin() {
+                    if (!isValidLoginForm(this.loginForm, this.loginContext))
+                        return;
+                    if (!this.loginContext.isAccept) {
+                        this.loginContext.errorRemain = '请阅读并同意用户协议、隐私政策';
+                        return;
+                    }
+                    let res = loginApi(this.loginForm);
+                    
+                },
                 async startCountdown() {
                     this.loginContext.errorRemain = null;
                     this.loginContext.timeLeft = 60;
                     this.loginContext.timer = setInterval(() => {
                         this.loginContext.codeMsg = --this.loginContext.timeLeft + 's后重发';
-                        this.loginContext.isSentCode = true;
+                        if (this.loginContext.timeLeft === 59)
+                            this.loginContext.isSentCode = true;
                         if (this.loginContext.timeLeft <= 0) {
                             clearInterval(this.loginContext.timer);
                             this.loginContext.isSentCode = false;

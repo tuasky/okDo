@@ -129,30 +129,41 @@ button {
     bottom: 3%;
     display: flex;
     flex-flow: column-reverse nowrap;
+    align-items: center;
     width: 100%;
     text-align: center;
     color: #77b0f2;
     cursor: pointer;
+    /*background-color: pink;*/
 }
 
 .user:hover {
     color: white;
 }
 
-.user li {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-}
+/*.user li {*/
+/*    display: flex;*/
+/*    !*!*flex-flow: column nowrap;*!*!*/
+/*    !*align-items: center;*!*/
+/*}*/
 
-.user li i {
+.user li:nth-child(1) button {
+    display: block;
     width: 40px;
     height: 40px;
     font-size: 13px;
     border-radius: 20px;
     background-color: #265f9f;
     line-height: 40px;
+    color: inherit;
 }
+
+.user li:nth-child(2) img {
+    width: 40px;
+    border-radius: 20px;
+}
+
+
 
 .login {
     position: fixed;
