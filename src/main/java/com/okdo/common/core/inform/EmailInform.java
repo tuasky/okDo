@@ -59,7 +59,7 @@ public class EmailInform implements Inform {
         String contentType = informContext.getContentType();
         for (String str : Arrays.asList(sender, receiver, contentType)) {
             if (StringUtils.isEmpty(str))
-                throw new Exception(String.format("%s is null.", str));
+                throw new Exception("empty argc(sender, receiver, contentType).");
         }
         String content = null;
         switch (contentType) {

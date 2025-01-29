@@ -13,7 +13,7 @@ public class R<T> implements Serializable {
     private int code;
     private String msg;
 
-    public static <T> R<T> restResult(T data, int code, String msg) {
+    private static <T> R<T> restResult(T data, int code, String msg) {
         R<T> r = new R<T>();
         r.setData(data);
         r.setCode(code);
@@ -31,5 +31,17 @@ public class R<T> implements Serializable {
 
     public static <T> R<T> success(T data, String msg) {
         return restResult(data, Status.OK, msg);
+    }
+
+    public static <T> R<T> error(T data, int code, String msg) {
+        return restResult(data, code, msg);
+    }
+
+    public static <T> R<T> error(int code, String msg) {
+        return restResult(null, code, msg);
+    }
+
+    public static <T> R<T> error(String msg) {
+        return restResult(null, Status.ERROR, msg);
     }
 }

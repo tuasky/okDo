@@ -7,4 +7,5 @@ public class LoginBody {
     private String type;
     private String receiver;
     private String verifyCode;
+    private String password;
 }

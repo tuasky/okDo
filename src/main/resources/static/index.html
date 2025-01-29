@@ -1,85 +1,135 @@
 ﻿<!DOCTYPE html>
 <html dir="ltr" lang="en" class="no-outlines">
 <head>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- ==== Document Title ==== -->
     <title>okDo</title>
     <link rel="icon" href="img/favicon.ico" type="image/ico">
-
-    <!-- ==== Document Meta ==== -->
-    <meta name="author" content="">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-
-    <!-- Stylesheets -->
-<!--    <link rel="stylesheet" href="assets/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">-->
-
-<!--    <link rel="stylesheet" href="assets/css/fullcalendar.min.css">-->
-<!--    <link rel="stylesheet" href="assets/css/style.css">-->
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/index.css">
-    <!-- Page Level Stylesheets -->
+    <link rel="stylesheet" href="css/color.css">
+    <link rel="stylesheet" href="css/calendar.css">
     
 </head>
 <body>
-    <div id="app">
-        <div id="mainWindow" :class="{blur: loginContext.isShowLoginWindow}">
-            <div class="nav">
-                <div class="logo">
-                    <img src="img/logo.png" alt="">
+    <div id="app" class="app">
+        <div id="home-page"
+             class="home-page"
+             :style="{width: resizeHeader.width + 'px'}"
+        >
+            <div class="home-page--main">
+                <div class="top">
+                    <button v-show="loginUser == null"
+                            @click="sw.login = !sw.login"
+                            class="login-btn"
+                            type="button">
+                        <span>登录 / 注册</span>
+                    </button>
+                    
+                    <button v-show="loginUser != null"
+                            :class="[sw.userMenu ? 'active-nav' : '', 'user-menu-bt']"
+                            @click="sw.userMenu = !sw.userMenu"
+                    >
+                        <img src="img/logo.png" alt="">
+                        <span>个人空间</span>
+                        <span class="font-icon"></span>
+                    </button>
+                    
+                    <div class="top-nav">
+                        <button class="font-icon"></button>
+                        <button @click="homeHide" class="font-icon"></button>
+                    </div>
+                
                 </div>
-                <ul class="sub-nav">
-                    <li class="active-nav">
-                        <a class="font-icon nav-icon" href="#"></a>
-                        <i>待办</i>
-                    </li>
-                    <li>
-                        <a class="font-icon nav-icon" href="#"></a>
-                        <i>热门</i>
-                    </li>
-                </ul>
-                <ul class="user">
-                    <li class="login-btn">
-                        <button v-show="userInfo == null" @click="popLoginWindow">登录</button>
-                    </li>
-                    <li >
-                        <img v-show="userInfo != null" src="{{userInfo.headerUrl}}" alt="">
-                    </li>
-                </ul>
+                <div class="quick-nav">
+                    <ul>
+                        <li><a class="active-nav" href="#"><span class="font-icon active-icon"></span><span>待办</span></a></li>
+                        <li><a href="#"><span class="font-icon"></span><span>待办</span></a></li>
+                        <li><a href="#"><span class="font-icon"></span><span>待办</span></a></li>
+                    </ul>
+                </div>
+                <div class="other-nav">
+                    <h4>更多</h4>
+                    <ul>
+                        <li><a href="#"><span class="font-icon"></span><span>待办</span></a></li>
+                        <li><a href="#"><span class="font-icon"></span><span>待办</span></a></li>
+                        <li><a href="#"><span class="font-icon"></span><span>待办</span></a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="showContent">
+            <div class="resize-handle" @mousedown="startResize"></div>
             
+        </div>
+        
+        <button class="menu-aside-expand" @click="homeShow"
+                v-show="sw.homeHide"
+        >
+            <span class="font-icon"></span>
+        </button>
+        
+        <div class="mc">
+            <div class="calendar">
+                <div ref="calendarEl"
+                     class="calendar--main"
+                >
+                
+                </div>
             </div>
         </div>
-        <div v-show="loginContext.isShowLoginWindow" class="login">
-            <div class="main">
+        
+        <div class="user-mask" v-show="sw.login"></div>
+        
+        <div id="login-w" class="login-w" v-show="sw.login">
+            <div class="lf">
                 <div class="logo"><img src="img/logo.png" alt=""></div>
+            </div>
+            <div class="rt">
+                <div class="title">欢迎使用 okDo</div>
+                <div class="login-type">
+                    <button @click="loginForm.type = 'email'"
+                            :class="[loginForm.type == 'email' ? 'choose-type' : '']"
+                    >
+                        邮箱登录
+                    </button>
+                    <button @click="loginForm.type = 'password'"
+                            :class="[loginForm.type == 'password' ? 'choose-type' : '']"
+                    >
+                        密码登录
+                    </button>
+                </div>
                 <form @submit.prevent="handleLogin">
                     <ul>
                         <li>
                             <input type="email"
                                    v-model="loginForm.receiver"
                                    placeholder="请输入邮箱账号"
-                                   maxlength="30"
+                                   maxlength="50"
                                    autocomplete="off"
-                                   required>
+                            >
                         </li>
-                        <li>
+                        <li v-show="loginForm.type == 'email'">
                             <input type="text"
                                    v-model="loginForm.verifyCode"
-                                   placeholder="请输入验证码"
+                                   placeholder="验证码"
                                    maxlength="6"
                                    autocomplete="off"
-                                   required>
+                            >
                             <button :disabled="loginContext.isSentCode"
                                     @click="sendCode"
                                     type="button"
-                                    class="codeBtn">
-                                    {{loginContext.codeMsg}}
+                                    class="codeBtn"
+                            >
+                                {{loginContext.codeMsg}}
                             </button>
+                        </li>
+                        <li v-show="loginForm.type == 'password'">
+                            <input type="password"
+                                   v-model="loginForm.password"
+                                   placeholder="请输入密码"
+                                   maxlength="50"
+                                   autocomplete="off"
+                            >
                         </li>
                     </ul>
                     <p v-show="loginContext.isSentCode"
@@ -91,139 +141,41 @@
                        class="error-remain">
                         {{loginContext.errorRemain}}
                     </p>
+                    <button class="submit" type="submit">登录 / 注册</button>
                     <label class="agree" for="checkbox">
                         <input type="checkbox"
                                id="checkbox"
                                v-model="loginContext.isAccept"
-                               required>
+                        >
                         我已阅读并同意 <a href="#">用户协议</a>、<a>隐私政策</a>
                     </label>
-                    <button class="submit" type="submit">登录/注册</button>
                 </form>
-                <div @click="closeLoginWindow"
-                     class="close font-icon"></div>
+            </div>
+            <button class="close" @click="closeLoginWindow"><span class="font-icon"></span></button>
+        
+        </div>
+        
+        <div class="user-menu" v-show="sw.userMenu">
+            <div class="user-menu--main">
+                <ul class="bottom">
+                    <li @click="logout"><a href="#"><span class="font-icon"></span><span>退出</span></a></li>
+                </ul>
             </div>
         </div>
     </div>
     
-<!--    <div class="panel">-->
-
-<!--        <div class="panel-content">-->
-<!--            <div class="row">-->
-<!--                <div class="col-lg-3 d-none d-lg-block">-->
-<!--                    &lt;!&ndash; Calendar Events Start &ndash;&gt;-->
-<!--                    <div class="calendar&#45;&#45;events">-->
-<!--                        <h4 class="h4">拖拽事件</h4>-->
-<!--                        <div class="fc-events">-->
-<!--                            <div class="fc-event label-green">聚会</div>-->
-<!--                            <div class="fc-event label-orange">午餐</div>-->
-<!--                            <div class="fc-event label-blue">会议</div>-->
-<!--                            <div class="fc-event label-red">运动</div>-->
-<!--                        </div>-->
-<!--                        <label class="form-check">-->
-<!--                            <input type="checkbox" name="is_removeable" value="1" class="form-check-input">-->
-<!--                            <span class="form-check-label">拖拽后移除</span>-->
-<!--                        </label>-->
-<!--                        <hr>-->
-<!--                        <h4 class="h4">创建事件</h4>-->
-<!--                        <ul class="calendar&#45;&#45;event__colors">-->
-<!--                            <li class="label-green active"></li>-->
-<!--                            <li class="label-orange"></li>-->
-<!--                            <li class="label-blue"></li>-->
-<!--                            <li class="label-red"></li>-->
-<!--                            <li class="label-black"></li>-->
-<!--                            <li class="label-gray"></li>-->
-<!--                        </ul>-->
-<!--                        <form action="#" class="mt-4 pt-1">-->
-<!--                            <input type="text" class="form-control" placeholder="Event Title..." required>-->
-<!--                            <button type="submit" class="btn btn-danger btn-rounded mt-3">添加</button>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; Calendar Events End &ndash;&gt;-->
-<!--                </div>-->
-<!--                <div class="col-lg-9">-->
-<!--                    &lt;!&ndash; Calendar Start &ndash;&gt;-->
-<!--                    <div id="calendarApp" class="calendar&#45;&#45;app"></div>-->
-<!--                    &lt;!&ndash; Calendar End &ndash;&gt;-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-    <!-- Scripts -->
-<!--    <script src="assets/js/jquery.min.js"></script>-->
-<!--    <script src="assets/js/jquery-ui.min.js"></script>-->
-
-<!--    &lt;!&ndash; Page Level Scripts &ndash;&gt;-->
-<!--    <script src="assets/js/moment.min.js"></script>-->
-<!--    <script src="assets/js/fullcalendar.js"></script>-->
-<!--    <script src="assets/js/page/calendar.js"></script>-->
-<!--    <script src="assets/js/locale-all.js"></script>-->
+    
+    
     <script src="plugins/vue/vue.global.js"></script>
-    <script src="plugins/axios/axios.min.js"></script>
-    <script src="js/request.js"></script>
+    <script src='plugins/fullcalendar-6.1.15/dist/index.global.js'></script>
+    <script src='js/api/calendar.js'></script>
     <script src="js/entity.js"></script>
     <script src="js/api/login.js"></script>
     <script src="js/validate.js"></script>
+    <script src="plugins/axios/axios.min.js"></script>
+    <script src="js/request.js"></script>
     <script src="js/common.js"></script>
-    <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    loginContext: new LoginContext(),
-                    loginForm: new LoginForm(),
-                    userInfo: null,
-                }
-            },
-            methods: {
-                popLoginWindow() {
-                    if (this.loginContext.isLogin)
-                        return;
-                    this.loginContext = new LoginContext();
-                    this.loginContext.isShowLoginWindow = true;
-                    this.loginForm = new LoginForm();
-                },
-                closeLoginWindow() {
-                    this.loginContext.isShowLoginWindow = false;
-                    clearInterval(this.loginContext.timer);
-                },
-                async sendCode() {
-                    if (this.loginContext.isSentCode)
-                        return;
-                    if (!isValidEmail(this.loginForm.receiver, this.loginContext))
-                        return
-                    if (!this.loginContext.isAccept) {
-                        this.loginContext.errorRemain = '请阅读并同意用户协议、隐私政策';
-                        return;
-                    }
-                    this.startCountdown().then(r => null)
-                    sendCodeApi(this.loginForm)
-                },
-                async handleLogin() {
-                    if (!isValidLoginForm(this.loginForm, this.loginContext))
-                        return;
-                    if (!this.loginContext.isAccept) {
-                        this.loginContext.errorRemain = '请阅读并同意用户协议、隐私政策';
-                        return;
-                    }
-                    let res = loginApi(this.loginForm);
-                    
-                },
-                async startCountdown() {
-                    this.loginContext.errorRemain = null;
-                    this.loginContext.timeLeft = 60;
-                    this.loginContext.timer = setInterval(() => {
-                        this.loginContext.codeMsg = --this.loginContext.timeLeft + 's后重发';
-                        if (this.loginContext.timeLeft === 59)
-                            this.loginContext.isSentCode = true;
-                        if (this.loginContext.timeLeft <= 0) {
-                            clearInterval(this.loginContext.timer);
-                            this.loginContext.isSentCode = false;
-                            this.loginContext.codeMsg = '重新发送';
-                        }
-                    }, 1000)
-                }
-            },
-        }).mount('#app')
-    </script>
+    <script src="js/api/index.js"></script>
+    
 </body>
 </html>

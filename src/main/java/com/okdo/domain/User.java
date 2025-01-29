@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.Builder;
@@ -17,12 +18,11 @@ public class User implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private Long userId;
+    private Long uid;
     private String phone;
     private String type;
     private String headerUrl;
     private String status;
-    private Date createTime;
     private String username;
     private String password;
     private String description;
@@ -31,6 +31,8 @@ public class User implements Serializable {
     private Integer age;
     private Integer account;
     private String identityCard;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

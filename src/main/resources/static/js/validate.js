@@ -31,8 +31,12 @@ function validID(rule, value, callback) {
     }
 }
 
+function isEmptyStr(value) {
+    return value == null || value === ''
+}
+
 function isValidEmail(value, loginContext) {
-    if (value == null) {
+    if (isEmptyStr(value)) {
         loginContext.errorRemain = '请输入邮箱账号';
         return false;
     }
@@ -45,7 +49,7 @@ function isValidEmail(value, loginContext) {
 }
 
 function isValidCode(value, loginContext) {
-    if (value == null) {
+    if (isEmptyStr(value)) {
         loginContext.errorRemain = '验证码不能为空'
         return false;
     }
@@ -57,9 +61,21 @@ function isValidCode(value, loginContext) {
     return true;
 }
 
+function isValidPassword(value, loginContext) {
+    if (isEmptyStr(value)) {
+        loginContext.errorRemain = '密码不能为空'
+        return false;
+    }
+    return true;
+}
+
 function isValidLoginForm (loginForm, loginContext) {
+    if (loginForm.type === 'email') {
+        return isValidEmail(loginForm.receiver, loginContext) &&
+            isValidCode(loginForm.verifyCode, loginContext);
+    }
     return isValidEmail(loginForm.receiver, loginContext) &&
-        isValidCode(loginForm.verifyCode, loginContext);
+        isValidPassword(loginForm.password, loginContext);
 }
 
 

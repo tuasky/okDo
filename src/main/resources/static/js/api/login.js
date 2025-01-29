@@ -1,14 +1,14 @@
-function loginApi(params) {
+function loginApi(data) {
     return $axios({
-        url: localUrl + '/user/login',
+        url: '/user/login',
         method: 'post',
-        params
+        data: data
     })
 }
 
 function sendCodeApi(params) {
     return $axios({
-        url: localUrl + '/user/sendCode',
+        url: '/user/sendCode',
         method: 'get',
         params
     })

@@ -12,6 +12,7 @@ spring:
     port: 465
     username: okDo_timer@qq.com
     protocol: smtps
+    password: ogsbqinyysogcfje
     properties:
       mail:
         smtp:
@@ -22,6 +23,10 @@ spring:
     host: localhost
     database: 0
     port: 6379
+
+jwt:
+    secret: tuasky-vdjosdcofjifeomkpeopm
+    expiration: 864000000
 
 
 

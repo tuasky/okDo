@@ -1,0 +1,99 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <link rel="icon" href="../img/favicon.ico" type="image/ico">-->
+<!--    <link rel="stylesheet" href="../css/index.css">-->
+<!--    <link rel="stylesheet" href="../css/login.css">-->
+<!--    <title>用户登录</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div id="app">-->
+<!--        <div id="mainWindow">-->
+<!--            <div class="nav">-->
+<!--                <div class="logo">-->
+<!--                    <img src="../img/logo.png" alt="">-->
+<!--                </div>-->
+<!--                <ul class="sub-nav">-->
+<!--                    <li>-->
+<!--                        <a class="font-icon nav-icon" href="#"></a>-->
+<!--                        <i>待办</i>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a class="font-icon nav-icon" href="#"></a>-->
+<!--                        <i>热门</i>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--                <ul class="user">-->
+<!--                    <li class="login-btn">-->
+<!--                        <a href="../index.html">登录</a>-->
+<!--                    </li>-->
+<!--                    <li >-->
+<!--                        <img v-show="userInfo != null" src="{{userInfo.headerUrl}}" alt="">-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="showContent">-->
+<!--                <div id="login" class="login">-->
+<!--                    <div class="main">-->
+<!--                        <div class="logo"><img src="../img/logo.png" alt=""></div>-->
+<!--                        <form @submit.prevent="handleLogin">-->
+<!--                            <ul>-->
+<!--                                <li>-->
+<!--                                    <input type="email"-->
+<!--                                           v-model="loginForm.receiver"-->
+<!--                                           placeholder="请输入邮箱账号"-->
+<!--                                           maxlength="30"-->
+<!--                                           autocomplete="off"-->
+<!--                                           required>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <input type="text"-->
+<!--                                           v-model="loginForm.verifyCode"-->
+<!--                                           placeholder="请输入验证码"-->
+<!--                                           maxlength="6"-->
+<!--                                           autocomplete="off"-->
+<!--                                           required>-->
+<!--                                    <button :disabled="loginContext.isSentCode"-->
+<!--                                            @click="sendCode"-->
+<!--                                            type="button"-->
+<!--                                            class="codeBtn">-->
+<!--                                        {{loginContext.codeMsg}}-->
+<!--                                    </button>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                            <p v-show="loginContext.isSentCode"-->
+<!--                               class="success-remain">-->
+<!--                                <span class="font-icon"></span>-->
+<!--                                邮箱验证码已发送，可能会有延后，请耐心等待-->
+<!--                            </p>-->
+<!--                            <p v-show="loginContext.errorRemain != null"-->
+<!--                               class="error-remain">-->
+<!--                                {{loginContext.errorRemain}}-->
+<!--                            </p>-->
+<!--                            <label class="agree" for="checkbox">-->
+<!--                                <input type="checkbox"-->
+<!--                                       id="checkbox"-->
+<!--                                       v-model="loginContext.isAccept"-->
+<!--                                       required>-->
+<!--                                我已阅读并同意 <a href="#">用户协议</a>、<a>隐私政策</a>-->
+<!--                            </label>-->
+<!--                            <button class="submit" type="submit">登录/注册</button>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <script src="../plugins/vue/vue.global.js"></script>-->
+<!--    <script src="../plugins/axios/axios.min.js"></script>-->
+<!--    <script src="../js/request.js"></script>-->
+<!--    <script src="../js/entity.js"></script>-->
+<!--    <script src="../js/api/login.js"></script>-->
+<!--    <script src="../js/validate.js"></script>-->
+<!--    <script src="../js/common.js"></script>-->
+<!--</body>-->
+<!--</html>-->

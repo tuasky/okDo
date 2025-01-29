@@ -19,4 +19,12 @@ public class RedisCache {
     public <T> void string(final String key, final T value, long timeout, TimeUnit unit) {
         redisTemplate.opsForValue().set(key, value, timeout, unit);
     }
+
+    public String getString(final String key) {
+        return (String) redisTemplate.opsForValue().get(key);
+    }
+
+    public void delString(final String key) {
+        redisTemplate.delete(key);
+    }
 }
